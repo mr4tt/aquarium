@@ -1,31 +1,66 @@
-import { Client } from "discord.js";
-import { REST } from "discord.js";
-import { Routes } from "discord.js";
+import { Client, REST, Routes, type Interaction } from "discord.js";
+
+import getCardInfo from "./commands/getCardInfo.ts";
 
 import dotenv from 'dotenv';
 dotenv.config(); 
 
-const clientID = process.env.clientID
-const token = process.env.token
+const clientID = process.env.clientID;
+const token = process.env.token;
+const testServerID = process.env.testServerID;
 
 // set up client
 export const CLIENT = new Client({ intents: [] });
-const COMMANDS = []
+
+const COMMANDS = {
+    "getcard": getCardInfo
+};
 
 // set up REST module for slash commands
 const rest = new REST().setToken(token!);
 
+// after logging in, run this event 
+CLIENT.on("ready", async () => {
+    console.log(`Ready! Logged in as ${CLIENT.user!.tag}`);
+});
+
+// catch all slash commands 
+CLIENT.on("interactionCreate", async(interaction: Interaction) => {
+    // if not slash command
+    if (!interaction.isChatInputCommand()) return;
+
+    const command = COMMANDS[interaction.commandName];
+
+    if (!command) {
+        console.error(`No command matching ${interaction.commandName} was found.`);
+        return;
+    }
+
+    try {
+        await command.execute(interaction);
+    } catch (error) {
+        console.error(`Error executing ${interaction.commandName}`);
+        console.error(error);
+    }
+});
+
 // register commands and log into the bot:
 (async () => {
+    const commandBody = Object.values(COMMANDS).map(command => command.data.toJSON())
+    // globally
+    // rest.put(
+    //     Routes.applicationCommands(clientID!),
+    //     {
+    //         body: commandBody
+    //     }
+    // );
+
+    // per guild
     rest.put(
-        Routes.applicationCommands(clientID!),
+        Routes.applicationGuildCommands(clientID!, testServerID!),
         {
-            body: COMMANDS
+            body: commandBody
         }
     );
     await CLIENT.login(token);
-
-    CLIENT.on("ready", async () => {
-        console.log(`Ready! Logged in as ${CLIENT.user!.tag}`);
-    });
 })();
