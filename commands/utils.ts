@@ -4,14 +4,14 @@ import dotenv from 'dotenv';
 dotenv.config(); 
 
 export type CommandType = {
-	// contains data about the command, such as name and cmd description
-	data: SlashCommandBuilder;
+    // contains data about the command, such as name and cmd description
+    data: SlashCommandBuilder;
 
-	/**
-	 * Executes a Discord slash command
-	 * @param {ChatInputCommandInteraction} interaction 
-	 */
-	execute: (interaction: ChatInputCommandInteraction) => Promise<void>; 
+    /**
+     * Executes a Discord slash command
+     * @param {ChatInputCommandInteraction} interaction 
+     */
+    execute: (interaction: ChatInputCommandInteraction) => Promise<void>; 
 };
 
 const quarterly: string = process.env.quarterly!;

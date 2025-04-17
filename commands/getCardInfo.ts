@@ -1,18 +1,18 @@
 import { SlashCommandBuilder, } from "@discordjs/builders";
 import { ChatInputCommandInteraction } from "discord.js";
 import { type CommandType, FISH, FLYINGFISH, SALMON } from "./utils.ts";
- 
+
 
 export default {
-	data: new SlashCommandBuilder()
-		.setName('getcard')
-		.setDescription('Get all card info'),
+    data: new SlashCommandBuilder()
+        .setName('getcard')
+        .setDescription('Get all card info'),
 
-	/**
-	 * Reply with category reward % for all cards
+    /**
+     * Reply with category reward % for all cards
      * @param {ChatInputCommandInteraction} interaction
-	 */
-	async execute(interaction: ChatInputCommandInteraction) {
+     */
+    async execute(interaction: ChatInputCommandInteraction) {
         const cards = {
             "fish": FISH, 
             "flying fish": FLYINGFISH, 
@@ -32,6 +32,6 @@ export default {
             cardInfo += "-----------\n";
         };
 
-		await interaction.reply(cardInfo);
-	},
+        await interaction.reply(cardInfo);
+    },
 } as CommandType;
