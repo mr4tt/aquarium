@@ -1,6 +1,7 @@
 import { Client, REST, Routes, type Interaction } from "discord.js";
 
 import getCardInfo from "./commands/getCardInfo.ts";
+import getCategory from "./commands/getCategory.ts";
 
 import dotenv from 'dotenv';
 dotenv.config(); 
@@ -13,7 +14,8 @@ const testServerID = process.env.testServerID;
 export const CLIENT = new Client({ intents: [] });
 
 const COMMANDS = {
-    "getcard": getCardInfo
+    "getcard": getCardInfo,
+    "getcategories": getCategory,
 };
 
 // set up REST module for slash commands
@@ -44,6 +46,7 @@ CLIENT.on("interactionCreate", async(interaction: Interaction) => {
     }
 });
 
+// TODO: depending on test or prod, use globally or guild
 // register commands and log into the bot:
 (async () => {
     const commandBody = Object.values(COMMANDS).map(command => command.data.toJSON())

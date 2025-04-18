@@ -23,8 +23,7 @@ export const CATEGORIES = [
     "bakery",
     "drugstore",
     "entertainment", 
-    "concerts", 
-    {quarterly},
+    [quarterly],
     "grocery",
     "other"
 ];
@@ -55,7 +54,6 @@ export const SALMON = {
     "bar": 3,
     "bakery": 3,
     "entertainment": 3, 
-    "concerts": 3, 
     "grocery": 3,
     "other": 1
 };
