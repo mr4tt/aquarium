@@ -1,6 +1,6 @@
 import { SlashCommandBuilder, } from "@discordjs/builders";
 import { ChatInputCommandInteraction } from "discord.js";
-import { type CommandType, FISH, FLYINGFISH, SALMON } from "./utils.ts";
+import { type CommandType, CARDS } from "./utils.ts";
 
 
 export default {
@@ -13,16 +13,10 @@ export default {
      * @param {ChatInputCommandInteraction} interaction
      */
     async execute(interaction: ChatInputCommandInteraction) {
-        const cards = {
-            "fish": FISH, 
-            "flying fish": FLYINGFISH, 
-            "salmon": SALMON
-        };
-
         let cardInfo = "";
 
-        // each card and each category in the card, append info to cardInfo
-        for(const [card, cardCategory] of Object.entries(cards)) {
+        // for each card and each category in the card, append info to cardInfo
+        for(const [card, cardCategory] of Object.entries(CARDS)) {
             cardInfo += `## ${card}\n`;
 
             for(const [category, percent] of Object.entries(cardCategory)) {

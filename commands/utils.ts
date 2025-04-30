@@ -23,12 +23,12 @@ export const CATEGORIES = [
     "bakery",
     "drugstore",
     "entertainment", 
-    [quarterly],
+    quarterly,
     "grocery",
     "other"
 ];
 
-export const FISH = {
+const FISH = {
     "dining": 3,
     "delivery": 3,
     "cafe": 3, 
@@ -37,7 +37,7 @@ export const FISH = {
     "other": 1.5
 };
 
-export const FLYINGFISH = {
+const FLYINGFISH = {
     [quarterly]: 5,
     "dining": 3,
     "delivery": 3,
@@ -47,7 +47,7 @@ export const FLYINGFISH = {
     "other": 1
 };
 
-export const SALMON = {
+const SALMON = {
     "dining": 3, 
     "delivery": 3, 
     "cafe": 3, 
@@ -56,4 +56,10 @@ export const SALMON = {
     "entertainment": 3, 
     "grocery": 3,
     "other": 1
+};
+
+export const CARDS = {
+    "salmon": SALMON,
+    "fish": FISH, 
+    "flying fish": FLYINGFISH, 
 };
