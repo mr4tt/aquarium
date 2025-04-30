@@ -2,6 +2,7 @@ import { Client, REST, Routes, type Interaction } from "discord.js";
 
 import getCardInfo from "./commands/getCardInfo.ts";
 import getCategory from "./commands/getCategory.ts";
+import getBestCard from "./commands/getBestCard.ts";
 
 import dotenv from 'dotenv';
 dotenv.config(); 
@@ -16,6 +17,7 @@ export const CLIENT = new Client({ intents: [] });
 const COMMANDS = {
     "getcard": getCardInfo,
     "getcategories": getCategory,
+    "bestcard": getBestCard
 };
 
 // set up REST module for slash commands
