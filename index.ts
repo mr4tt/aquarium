@@ -4,6 +4,8 @@ import getCardInfo from "./commands/getCardInfo.ts";
 import getCategory from "./commands/getCategory.ts";
 import getBestCard from "./commands/getBestCard.ts";
 
+import { type CommandType } from "./commands/utils.ts";
+
 import dotenv from 'dotenv';
 dotenv.config(); 
 
@@ -14,7 +16,7 @@ const testServerID = process.env.testServerID;
 // set up client
 export const CLIENT = new Client({ intents: [] });
 
-const COMMANDS = {
+const COMMANDS: Record<string, CommandType> = {
     "getcard": getCardInfo,
     "getcategories": getCategory,
     "bestcard": getBestCard

@@ -58,7 +58,7 @@ const SALMON = {
     "other": 1
 };
 
-export const CARDS = {
+export const CARDS: Record<string, Record<string, number>> = {
     "salmon": SALMON,
     "fish": FISH, 
     "flying fish": FLYINGFISH, 

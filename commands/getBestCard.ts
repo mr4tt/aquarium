@@ -24,7 +24,7 @@ export default {
             return;
         }
 
-        let bestCard = ["card", 0];
+        let bestCard: [string, number] = ["card", 0];
 
         // look through each card to find best %
         for(const [card, cardCategory] of Object.entries(CARDS)) {
