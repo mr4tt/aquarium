@@ -13,8 +13,8 @@ Discord developer portal: https://discord.com/developers/applications/
 
 
 ### setup
-1. make sure you're using node > 23.6.0 (first version with native ts type stripping)
-2. `node index.ts`
+1. make sure you're using node >= 23.6.0 (first version with native ts type stripping)
+2. `node index.ts test` or `node index.ts prod`
 
 
 ### setup with tsc (untested)
@@ -22,4 +22,4 @@ Discord developer portal: https://discord.com/developers/applications/
 2. run `tsc` to generate `.js` version of files 
 3. in each `.js` file, remove `.ts` extension from import statements
 4. in `package.json`, remove `type:module`
-5. run `node index.js`
+5. run `node index.js test` or `node index.js prod`

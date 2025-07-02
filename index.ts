@@ -50,24 +50,31 @@ CLIENT.on("interactionCreate", async(interaction: Interaction) => {
     }
 });
 
-// TODO: depending on test or prod, use globally or guild
+if (process.argv.length != 3 || (process.argv[2] != "test" && process.argv[2] != "prod")) {
+    throw new Error("missing test / prod arg or too many args!");
+}
+
 // register commands and log into the bot:
 (async () => {
     const commandBody = Object.values(COMMANDS).map(command => command.data.toJSON())
     // globally
-    // rest.put(
-    //     Routes.applicationCommands(clientID!),
-    //     {
-    //         body: commandBody
-    //     }
-    // );
-
+    if (process.argv[2] === "prod") {
+        rest.put(
+            Routes.applicationCommands(clientID!),
+            {
+                body: commandBody
+            }
+        );
+    }
     // per guild
-    rest.put(
-        Routes.applicationGuildCommands(clientID!, testServerID!),
-        {
-            body: commandBody
-        }
-    );
+    else {
+        rest.put(
+            Routes.applicationGuildCommands(clientID!, testServerID!),
+            {
+                body: commandBody
+            }
+        );
+    }
+
     await CLIENT.login(token);
 })();
