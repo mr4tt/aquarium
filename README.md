@@ -14,12 +14,14 @@ Discord developer portal: https://discord.com/developers/applications/
 
 ### setup
 1. make sure you're using node >= 23.6.0 (first version with native ts type stripping)
-2. `node index.ts test` or `node index.ts prod`
+2. `npm install` to install packages
+3. `node index.ts test` or `node index.ts prod`
 
 
 ### setup with tsc (untested)
-1. run `tsc --init` (after installing typescript) to create a `tsconfig.json` file
-2. run `tsc` to generate `.js` version of files 
-3. in each `.js` file, remove `.ts` extension from import statements
-4. in `package.json`, remove `type:module`
-5. run `node index.js test` or `node index.js prod`
+1. `npm install` to install packages
+2. run `tsc --init` (after installing typescript) to create a `tsconfig.json` file
+3. run `tsc` to generate `.js` version of files 
+4. in each `.js` file, remove `.ts` extension from import statements
+5. in `package.json`, remove `type:module`
+6. run `node index.js test` or `node index.js prod`
